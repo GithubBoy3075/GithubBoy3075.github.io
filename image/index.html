@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<html>
+<head>
+	<title>Image</title>
+</head>
+<body>
+
+	<h1><center>Image</center></h1>
+	<p><center></center></p>
+<?php
+
+function getDir($path){
+  $arr = array();
+    $arr[] = $path;
+  if(is_file($path)){
+
+  }else{
+    if(is_dir($path)){
+      $data = scandir($path);
+      if(!empty($data)){
+        foreach ($data as $value){
+          if($value != '.' && $value != '..'){
+            $sub_path = $path."/".$value;
+            $temp = getDirContent($sub_path);
+            $arr = array_merge($temp,$arr);
+          }          
+        }
+
+      }
+    }
+  }
+
+  return $arr;
+}
+$path = 'lss';
+var_dump(getDir($path));
+
+?>
+</body>
+</html>
